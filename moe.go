@@ -4,11 +4,10 @@ import (
 	"./src/crawler"
 	"./src/filter"
 	"./src/go-pinyin"
-	//	"fmt"
+	"fmt"
 	"os"
 )
 
-//恢复爱好份额
 
 func main() {
 	result := crawler.QueryAll()
@@ -22,6 +21,7 @@ func main() {
 		for _, v := range R.Pages {
 			for _, data := range filter.Split(v.Title) {
 				if len(data) > 3 {
+					fmt.Println(data)
 					dict[data] = pinyin.Slug(data, pa)
 				}
 			}

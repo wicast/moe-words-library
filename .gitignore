@@ -1,2 +1,7 @@
-.godep/
-bin/
+*
+!.gitignore
+!cmd/*
+!Godeps
+!src/*
+!moe.go
+!README.md
