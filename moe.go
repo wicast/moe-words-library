@@ -8,7 +8,6 @@ import (
 	"os"
 )
 
-
 func main() {
 	result := crawler.QueryAll()
 
@@ -37,12 +36,12 @@ func main() {
 
 	dir, _ := os.Getwd()
 	if _, err := os.Stat(dir + path + "dicts"); os.IsNotExist(err) {
-
 		err_dir := os.Mkdir(dir+path+"dicts", os.ModePerm)
 		if err_dir != nil {
 			panic(err_dir)
 		}
 	}
+
 	Moe_dict_basic, err := os.Create("./dicts/Moe_dict_basic.txt")
 	defer Moe_dict_basic.Close()
 	if err != nil {

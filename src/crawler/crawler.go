@@ -31,7 +31,7 @@ func QueryAll() []ResultSet {
 	res, errR := goreq.Request{
 		Uri:         "http://zh.moegirl.org/api.php",
 		QueryString: first,
-		UserAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
+		UserAgent:   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
 	}.Do()
 
 	if errR != nil {
@@ -54,7 +54,6 @@ func QueryAll() []ResultSet {
 	Result = append(Result, CurrentResult)
 
 	for CurrentResult.Next != "" {
-
 		next := Item{
 			Action:     "query",
 			List:       "allpages",
@@ -68,7 +67,7 @@ func QueryAll() []ResultSet {
 		res, errR = goreq.Request{
 			Uri:         "http://zh.moegirl.org/api.php",
 			QueryString: next,
-			UserAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
+			UserAgent:   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
 		}.Do()
 		if errR != nil {
 			panic(errR)
