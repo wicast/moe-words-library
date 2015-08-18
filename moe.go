@@ -1,10 +1,10 @@
 package main
 
 import (
-	"./src/crawler"
-	"./src/filter"
-	"./src/go-pinyin"
 	"fmt"
+	"github.com/wicast/moe-words-library/src/crawler"
+	"github.com/wicast/moe-words-library/src/filter"
+	"github.com/wicast/moe-words-library/src/go-pinyin"
 	"os"
 )
 

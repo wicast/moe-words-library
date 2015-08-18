@@ -1,9 +1,9 @@
 package crawler
 
 import (
-	"./../xml_parser"
 	"fmt"
 	"github.com/franela/goreq"
+	"github.com/wicast/moe-words-library/src/xml_parser"
 	"time"
 )
 
