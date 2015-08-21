@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//	"fmt"
 	"github.com/wicast/moe-words-library/src/crawler"
 	"github.com/wicast/moe-words-library/src/filter"
 	"github.com/wicast/moe-words-library/src/go-pinyin"
@@ -20,7 +20,7 @@ func main() {
 		for _, v := range R.Pages {
 			for _, data := range filter.Split(v.Title) {
 				if len(data) > 3 {
-					fmt.Println(data)
+					//fmt.Println(data)
 					dict[data] = pinyin.Slug(data, pa)
 				}
 			}

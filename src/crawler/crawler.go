@@ -28,11 +28,20 @@ func QueryAll() []ResultSet {
 		Format:  "xml",
 	}
 
-	res, errR := goreq.Request{
-		Uri:         "http://zh.moegirl.org/api.php",
-		QueryString: first,
-		UserAgent:   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
-	}.Do()
+	var res *goreq.Response
+	var errR error
+	for i := 0; i < 3; i++ {
+		res, errR = goreq.Request{
+			Uri:         "http://zh.moegirl.org/api.php",
+			QueryString: first,
+			UserAgent:   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
+		}.Do()
+		if errR == nil {
+			break
+		} else {
+			fmt.Println("error:", errR)
+		}
+	}
 
 	if errR != nil {
 		panic(errR)
@@ -64,11 +73,19 @@ func QueryAll() []ResultSet {
 
 		fmt.Println("The next is " + next.Apcontinue)
 		time.Sleep(500 * time.Millisecond)
-		res, errR = goreq.Request{
-			Uri:         "http://zh.moegirl.org/api.php",
-			QueryString: next,
-			UserAgent:   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
-		}.Do()
+		for i := 0; i < 3; i++ {
+			res, errR = goreq.Request{
+				Uri:         "http://zh.moegirl.org/api.php",
+				QueryString: next,
+				UserAgent:   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
+			}.Do()
+			if errR == nil {
+				break
+			} else {
+				fmt.Println("error:", errR)
+
+			}
+		}
 		if errR != nil {
 			panic(errR)
 		}
