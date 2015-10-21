@@ -2,6 +2,7 @@ package main
 
 import (
 	//	"fmt"
+	"encoding/json"
 	"github.com/wicast/moe-words-library/src/crawler"
 	"github.com/wicast/moe-words-library/src/filter"
 	"github.com/wicast/moe-words-library/src/go-pinyin"
@@ -60,4 +61,11 @@ func main() {
 			Moe_dict_basic.WriteString(k + " " + v + "\n")
 		}
 	}
+	json_file, err := os.Create("./dicts/test.json")
+	defer json_file.Close()
+	json_byte, err := json.Marshal(dict)
+	if err != nil {
+		panic(err)
+	}
+	json_file.Write(json_byte)
 }
