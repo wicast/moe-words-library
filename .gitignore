@@ -3,5 +3,5 @@
 !cmd/*
 !Godeps
 !src/*
-!moe.go
+!main.go
 !README.md
