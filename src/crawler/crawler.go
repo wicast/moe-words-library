@@ -71,8 +71,8 @@ func QueryAll() []ResultSet {
 			Apcontinue: CurrentResult.Next,
 		}
 
-		fmt.Println("The next is " + next.Apcontinue)
-		time.Sleep(500 * time.Millisecond)
+		fmt.Println("The next page start with " + next.Apcontinue)
+		time.Sleep(1500 * time.Millisecond)
 		for i := 0; i < 3; i++ {
 			res, errR = goreq.Request{
 				Uri:         "http://zh.moegirl.org/api.php",
@@ -83,7 +83,8 @@ func QueryAll() []ResultSet {
 				break
 			} else {
 				fmt.Println("error:", errR)
-
+				fmt.Println("retry")
+				time.Sleep(500 * time.Millisecond)
 			}
 		}
 		if errR != nil {
