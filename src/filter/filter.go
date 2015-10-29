@@ -1,8 +1,31 @@
 package filter
 
 import (
+	// "fmt"
+	"github.com/wicast/moe-words-library/src/crawler"
+	"github.com/wicast/moe-words-library/src/go-pinyin"
 	"regexp"
 )
+
+func ResultSet2Dict(result []crawler.ResultSet) map[string]string {
+	dict := make(map[string]string)
+	pa := pinyin.NewArgs()
+	pa.Heteronym = true
+	pa.Separator = "'"
+	for _, R := range result {
+		for _, v := range R.Pages {
+			// fmt.Println(v.Title)
+			for _, data := range Split(v.Title) {
+				if len(data) > 3 {
+					//fmt.Println(data)
+					dict[data] = pinyin.Slug(data, pa)
+				}
+			}
+		}
+	}
+
+	return dict
+}
 
 func Split(origin_s string) []string {
 	hanzi := regexp.MustCompile(`[\p{Han}]+`)

@@ -5,28 +5,13 @@ import (
 	"encoding/json"
 	"github.com/wicast/moe-words-library/src/crawler"
 	"github.com/wicast/moe-words-library/src/filter"
-	"github.com/wicast/moe-words-library/src/go-pinyin"
 	"os"
 )
 
 func main() {
 	result := crawler.QueryAll()
 
-	pa := pinyin.NewArgs()
-	pa.Heteronym = true
-	pa.Separator = "'"
-
-	dict := make(map[string]string)
-	for _, R := range result {
-		for _, v := range R.Pages {
-			for _, data := range filter.Split(v.Title) {
-				if len(data) > 3 {
-					//fmt.Println(data)
-					dict[data] = pinyin.Slug(data, pa)
-				}
-			}
-		}
-	}
+	dict := filter.ResultSet2Dict(result)
 
 	var path string
 	if os.IsPathSeparator('\\') {
